@@ -10,8 +10,8 @@ var play_state = {
         // AUDIO YEAH
         this.jump_sound = this.game.add.audio('jump');
         this.lose_sound = this.game.add.audio('lose');
-        this.music1 = game.add.audio('hack1');
-        this.music2 = game.add.audio('hack2');
+        this.music1 = game.add.audio('hack1',2,true);
+        this.music2 = game.add.audio('hack2',2,true);
         this.music1.play();
         this.music2.play();
         this.music2.mute = true;
