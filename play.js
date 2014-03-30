@@ -172,7 +172,6 @@ var play_state = {
         this.outro.visible = true;
 
         // This time we go back to the 'menu' state
-        game.input.onDown.add(this.start, this);
         var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         space_key.onDown.add(this.new_game, this);
         this.game.input.onDown.add(this.new_game, this);
