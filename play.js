@@ -202,13 +202,14 @@ var play_state = {
 
         last_pipe_state = curr_pipe_state;
 
-        var frac_screen = (Math.random()*0.1+0.2);
+        var frac_screen_upper = (Math.random()*0.1+0.18);
+        var frac_screen_lower = (Math.random()*0.1+0.2)
         var height;
         if(curr_pipe_state == 1){ //upper
-            height = -1200 + frac_screen*y_size;
+            height = -1200 + frac_screen_upper*y_size;
         }
         else{ //lower
-            height = (1-frac_screen)*y_size;
+            height = (1-frac_screen_lower)*y_size;
         }
         this._add_obstacle_helper(height);
 
