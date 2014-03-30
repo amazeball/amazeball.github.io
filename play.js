@@ -190,6 +190,16 @@ var play_state = {
         sign_gravity = -1 * curr_pipe_state;
         this.game.add.tween(this.bird).to({angle: (-1+sign_gravity)*90}, 200).start();
         this.bird.body.gravity.y = amp_gravity * sign_gravity;
+        if(sign_gravity == 1 && this.music1.mute == true){
+            this.music1.mute = !this.music1.mute;
+            this.music2.mute = !this.music2.mute;
+        }
+
+        if(sign_gravity == -1 && this.music1.mute == false){
+            this.music1.mute = !this.music1.mute;
+            this.music2.mute = !this.music2.mute;
+        }
+
         last_pipe_state = curr_pipe_state;
 
         var frac_screen = (Math.random()*0.1+0.2);
