@@ -51,10 +51,10 @@ var play_state = {
         this.bird.body.collideWorldBounds = true;
 
         // Not 'this.score', but just 'score'
-        score = 0;
-        var style = { font: "30px Arial", fill: "#ffffff" };
+        score = -1;
+        var style = { font: "45px Impact", fill: "#000000" };
 
-        this.label_score = this.game.add.text(20, 20, "0", style);
+        this.label_score = this.game.add.text(30, 30, "0", style);
         //this.label_info = this.game.add.text(x_size-100, 20, x_velocity, style);
 
         this.jump_sound = this.game.add.audio('jump');
@@ -82,7 +82,7 @@ var play_state = {
             }
 
         }
-        this.label_score.text = score;
+        this.label_score.text = (score >= 0) ? score : 0;
         //this.label_info.text = x_velocity;
     },
 
@@ -174,6 +174,9 @@ var play_state = {
         // This time we go back to the 'menu' state
         var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         space_key.onDown.add(this.new_game, this);
+        this.game.input.onDown.add(this.new_game, this);
+
+
     },
     new_game: function(){
         // alert("In new Game");
@@ -201,7 +204,7 @@ var play_state = {
 
         // Not 'this.score', but just 'score'
         score += 1;
-        this.label_score.content = score;
+        this.label_score.content = (score >= 0) ? score : 0;
 
         curr_pipe_state = (Math.random() <= change_state_prob) ? (-1*last_pipe_state) : last_pipe_state;
 
@@ -221,7 +224,7 @@ var play_state = {
         }
         this._add_obstacle_helper(height);
         score += 1;
-        this.label_score.content = score;
+        this.label_score.content = (score >= 0) ? score : 0;
 
         //if (Math.random() >= 1){
             // TODO this is broken
