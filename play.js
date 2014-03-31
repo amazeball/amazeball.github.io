@@ -66,7 +66,7 @@ var play_state = {
 	// if the bird hits the pipes...
 
         if(bounce_game){
-            this.game.physics.arcade.overlap(this.bird, this.obstacles, this.hit_obstacle, null, this);
+             this.game.physics.arcade.overlap(this.bird, this.obstacles, this.hit_obstacle, null, this);
         }else{
             this.game.physics.arcade.overlap(this.bird, this.obstacles, this.hit_obstacle, null, this);
             this.obstacles.forEachAlive(function(c){
@@ -187,18 +187,17 @@ var play_state = {
     },
 
     add_obstacle_bounce: function(){
+        var last_sign_gravity = sign_gravity;
         sign_gravity = -1 * curr_pipe_state;
+
+        if(sign_gravity != last_sign_gravity){
+            this.music1.mute = !this.music1.mute;
+            this.music2.mute = !this.music2.mute;
+        }
         this.game.add.tween(this.bird).to({angle: (-1+sign_gravity)*90}, 200).start();
         this.bird.body.gravity.y = amp_gravity * sign_gravity;
-        if(sign_gravity == 1 && this.music1.mute == true){
-            this.music1.mute = !this.music1.mute;
-            this.music2.mute = !this.music2.mute;
-        }
 
-        if(sign_gravity == -1 && this.music1.mute == false){
-            this.music1.mute = !this.music1.mute;
-            this.music2.mute = !this.music2.mute;
-        }
+
 
         last_pipe_state = curr_pipe_state;
 
